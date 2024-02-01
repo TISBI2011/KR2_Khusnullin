@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c6e1f072a6a549e683700def3a742a7c" Name="Diagram1">
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Order" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.OrderProduct" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Otdel" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Product" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Sotrudnik" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Staff" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR2_KhusnullinModel.Zakazchik" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_Order_Otdel" ManuallyRouted="false" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_Order_Zakazchik" ManuallyRouted="false" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_Sotrudnik_Otdel" ManuallyRouted="false" />
+        <AssociationConnector Association="KR2_KhusnullinModel.FK_Sotrudnik_Staff" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

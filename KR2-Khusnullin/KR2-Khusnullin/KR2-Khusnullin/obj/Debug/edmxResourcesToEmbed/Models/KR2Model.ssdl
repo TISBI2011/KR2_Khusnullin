@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KR2_KhusnullinModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="idOrder" />
+    </Key>
+    <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Dateline" Type="date" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="idZakazchik" Type="int" />
+    <Property Name="idOtdel" Type="int" />
+  </EntityType>
+  <EntityType Name="OrderProduct">
+    <Key>
+      <PropertyRef Name="idOrderProduct" />
+    </Key>
+    <Property Name="idOrderProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idProduct" Type="int" />
+    <Property Name="idOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="Otdel">
+    <Key>
+      <PropertyRef Name="idOtdel" />
+    </Key>
+    <Property Name="idOtdel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="float" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="idProduct" />
+    </Key>
+    <Property Name="idProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="float" />
+  </EntityType>
+  <EntityType Name="Sotrudnik">
+    <Key>
+      <PropertyRef Name="idSotrudnik" />
+    </Key>
+    <Property Name="idSotrudnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" MaxLength="50" />
+    <Property Name="Addres" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="float" />
+    <Property Name="Pasport" Type="float" />
+    <Property Name="idOtdel" Type="int" />
+    <Property Name="idStaff" Type="int" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="idStaff" />
+    </Key>
+    <Property Name="idStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Zakazchik">
+    <Key>
+      <PropertyRef Name="idZakazchik" />
+    </Key>
+    <Property Name="idZakazchik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Addres" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="float" />
+  </EntityType>
+  <Association Name="FK_Order_Otdel">
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="idOtdel" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="idOtdel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Zakazchik">
+    <End Role="Zakazchik" Type="Self.Zakazchik" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zakazchik">
+        <PropertyRef Name="idZakazchik" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="idZakazchik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="idOrder" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="idOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="idProduct" />
+      </Principal>
+      <Dependent Role="OrderProduct">
+        <PropertyRef Name="idProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudnik_Otdel">
+    <End Role="Otdel" Type="Self.Otdel" Multiplicity="0..1" />
+    <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otdel">
+        <PropertyRef Name="idOtdel" />
+      </Principal>
+      <Dependent Role="Sotrudnik">
+        <PropertyRef Name="idOtdel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sotrudnik_Staff">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="idStaff" />
+      </Principal>
+      <Dependent Role="Sotrudnik">
+        <PropertyRef Name="idStaff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KR2_KhusnullinModelContainer">
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Otdel" EntityType="Self.Otdel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zakazchik" EntityType="Self.Zakazchik" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Order_Otdel" Association="Self.FK_Order_Otdel">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Zakazchik" Association="Self.FK_Order_Zakazchik">
+      <End Role="Zakazchik" EntitySet="Zakazchik" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderProduct" EntitySet="OrderProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudnik_Otdel" Association="Self.FK_Sotrudnik_Otdel">
+      <End Role="Otdel" EntitySet="Otdel" />
+      <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sotrudnik_Staff" Association="Self.FK_Sotrudnik_Staff">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
